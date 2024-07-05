@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <property name="tablespace" value="com_user_management_ts" dbms="postgresql"/>
+    <property name="now" value="NOW()" dbms="postgresql"/>
+
+    <changeSet  id="application-configuration-entity-seq" author="Ahmad Abo AlShamat">
+        <createSequence
+                         sequenceName="apco_seq"
+                         startValue="1"/>
+    </changeSet>
+
+    <changeSet id="application-configuration-entity-1" author="Ahmad Abo AlShamat">
+        <createTable tableName="sys_application_configuration"  tablespace="${tablespace}">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="varchar2(200)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="value" type="varchar2(200)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="application-configuration-entity-2" author="Ahmad Abo AlShamat">
+        <addColumn tableName="sys_application_configuration"  >
+
+            <column name="created_by" type="varchar2(200)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_date" type="datetime" defaultValue="${now}">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="modified_by" type="varchar2(200)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="modified_date" type="datetime">
+                <constraints nullable="true"/>
+            </column>
+        </addColumn>
+    </changeSet>
+</databaseChangeLog>
