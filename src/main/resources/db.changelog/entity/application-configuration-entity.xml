@@ -14,7 +14,7 @@
     </changeSet>
 
     <changeSet id="application-configuration-entity-1" author="Ahmad Abo AlShamat">
-        <createTable tableName="sys_application_configuration"  tablespace="${tablespace}">
+        <createTable tableName="sys_application_configuration"   >
             <column name="id" type="bigint">
                 <constraints primaryKey="true"/>
             </column>
